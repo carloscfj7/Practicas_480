@@ -1,0 +1,17 @@
+api_login_check:
+  path: /{_locale}/api/login_check
+
+gesdinet_jwt_refresh_token:
+  path: /{_locale}/api/token/refresh
+
+api_controllers:
+  resource: '../src/Endpoints/API/'
+  type: attribute
+  defaults: {_format: json}
+  prefix: /api
+
+# config/routes.yaml
+app.swagger_ui:
+  path: /api/doc
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger_ui }

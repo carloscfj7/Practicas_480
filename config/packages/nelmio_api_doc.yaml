@@ -1,0 +1,11 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title:       API conusltoria
+            description: Documentación de la API
+            version:     1.0.0
+        security:
+            - Bearer: [ ]
+    areas:
+        default:
+            path_patterns: [ ^/api ]  # Solo documenta rutas que empiecen con /api

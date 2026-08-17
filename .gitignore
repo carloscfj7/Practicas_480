@@ -1,0 +1,91 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+### IDE ###
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+### OS ###
+.DS_Store
+Thumbs.db
+desktop.ini
+
+### Environment ###
+.env
+.env.test
+
+### Lock files ###
+*.lock
+
+### Logs ###
+*.log
+/var/log/*
+
+### Database ###
+dump.sql
+
+### Local scripts (not needed for deployment) ###
+migrate_script.php
+restablecer_base_de_datos
+
+### Uploads ###
+public/uploads/
+
+### CSV files ###
+public/csv/*.csv
+public/import_csv/*.csv
+public/import_csv_examples/
+
+### Tests ###
+tests/_output/
+tests/Tests/
+tests/Shared/
+
+### Secrets ###
+id_rsa
+
+### Generated / Config ###
+src/Controller/Admin/*
+!src/Controller/Admin/.gitignore
+src/Controller/Rest/*
+!src/Controller/Rest/.gitignore
+src/Command/
+src/Migrations/
+!src/Entity/.gitignore
+src/Exception/
+src/Annotation/
+!src/Form/UserPasswordResetType.php
+!src/Form/UserPasswordResetRequestType.php
+src/Shared/Infrastructure/EventListener/ResponseListener.php
+src/Services/GetVirtualColumnsService.php
+src/Services/GenerateNewLanguageService.php
+src/Services/*/*
+xml/schema/obj.txt

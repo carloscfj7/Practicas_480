@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+  App\Tests\api\DataFixtures\UserFixture:
+    tags: ['doctrine.fixture.orm']
+    public: true
+  App\Tests\api\DataFixtures\ClienteFixture:
+    tags: [ 'doctrine.fixture.orm' ]
+    public: true

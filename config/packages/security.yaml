@@ -1,0 +1,78 @@
+security:
+    enable_authenticator_manager: true
+    password_hashers:
+        App\Entity\Usuarios\Domain\Usuario: 'auto'
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            algorithm: 'auto'
+            cost: 15
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api_doc:
+            pattern: ^/api/doc
+            stateless: true
+            security: false
+
+        login:
+            pattern: ^/api/login
+            stateless: true
+            user_checker: App\SecurityUser\UserChecker
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
+            provider: user_entity
+
+
+        refresh:
+            pattern: ^/%supported_locales_path%/api/token/refresh
+            stateless: true
+            refresh_jwt:
+                provider: user_entity
+
+        api:
+            pattern: ^/api(?!/doc)
+            stateless: true
+            entry_point: jwt
+            json_login:
+                check_path: /api/login_check
+                username_path: email
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            jwt: ~
+        public:
+            pattern: ^/%supported_locales_path%/api/public
+            stateless: true
+
+        logout:
+            pattern: ^/%supported_locales_path%/api/logout
+            stateless: true
+            jwt: null
+
+
+
+    access_control:
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/doc, roles: PUBLIC_ACCESS }
+        - { path: ^/api/register, roles: PUBLIC_ACCESS }
+        - { path: ^/api/admin, roles: ROLE_ADMIN }
+        - { path: ^/api/proyecto/read, roles: [ ROLE_ADMIN, ROLE_CLIENTE, ROLE_CONSULTOR ] }
+        - { path: ^/api/tarea/read, roles: [ ROLE_ADMIN, ROLE_CLIENTE, ROLE_CONSULTOR ] }
+        - { path: ^/api/consultor, roles: [ROLE_ADMIN,ROLE_CONSULTOR] }
+        - { path: ^/api/disponibilidad, roles: [ ROLE_ADMIN,ROLE_CONSULTOR ] }
+        - { path: ^/api/habilidad/read/all, roles: [ ROLE_ADMIN,ROLE_CONSULTOR ] }
+        - { path: ^/api/cliente, roles: [ROLE_ADMIN, ROLE_CLIENTE] }
+        - { path: ^/api/actividad, roles: [ ROLE_ADMIN,ROLE_CONSULTOR ] }
+        - { path: ^/api/delete, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/api/notificacion, roles: [ROLE_ADMIN, ROLE_CONSULTOR] }
+        - { path: ^/api, roles: ROLE_ADMIN }
+
+    providers:
+        user_entity:
+            entity:
+                class: App\Usuarios\Domain\Usuario
+                property: email
