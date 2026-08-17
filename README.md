@@ -95,12 +95,4 @@ La documentación de la API está disponible en:
 GET /api/doc
 ```
 
-## Contribuir
 
-1. Crear una rama desde `develop`
-2. Hacer commits con convención semántica
-3. Abrir Pull Request hacia `develop`
-
-## Licencia
-
-Propietaria - Practicas 480
